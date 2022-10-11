@@ -39,21 +39,22 @@ const TodoItem = (props) => {
                 'content-type': 'application/json'
             },
         })
-        .then(response => response.json())
-        .then(data => {
+        .then((response) => {
             emitDeleteTodoItem(todoItem);
         });
     }
 
     return (
-    <div align = "center">
+        // align = "center"
+    <div >
       <>
         <input type="checkbox" checked={todoItem.isDone}
         onChange={updateIsDone} /> 
         {
             todoItem.isDone ? <span style={{textDecoration:'line-through'}}>{todoItem.task}</span> : <input type="text" value={todoItem.task} onChange={updateTask} />
         }
-        <span style={{marginLeft: "1rem", cursor: "pointer"}} onClick={deleteToDoItem}>🗑️</span>
+        <span style={{marginLeft: "1rem", cursor: "pointer"}} 
+        onClick={deleteToDoItem}>🗑️</span>
       </>
     </div>
     );

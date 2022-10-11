@@ -35,19 +35,20 @@ function App() {
   }
 
   function handleDeleteToDoItem(item) {
-    const updatedTodoItems = todoItems.filter(aToDoItem => aToDoItem.id !== item.id)
+    const updatedTodoItems = todoItems.filter(aToDoItem => aToDoItem.id !== item.id);
+    console.log('updated todo items', updatedTodoItems);
     setTodoItems([...updatedTodoItems]);
   }
 
   return (
     <>
-
-      <div align = "center"><button onClick={addNewToDoItem}>Add item</button><br></br><br></br></div>
-
-      <div>
+      <p></p>
+      <div align = "center"><button onClick={addNewToDoItem} >Add item</button></div>
+      <p></p>
+      <div align = "center">
         {todoItems ? todoItems.map((todoItem) => {
           return <TodoItem key={todoItem.id} data={todoItem} emitDeleteTodoItem={handleDeleteToDoItem}/>
-        }) : 'loading data...'}
+        }) : 'Waiting for data to be loaded from the server...'}
       </div>
 
     </>
