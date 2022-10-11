@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 const TodoItem = (props) => {
+    const {emitDeleteTodoItem} = props;
 
     const [todoItem, setTodoItem] = useState(props.data);
     function updateIsDone() {
@@ -31,13 +32,28 @@ const TodoItem = (props) => {
         setTodoItem({...todoItem, task: event.target.value});
     }
 
+    function deleteToDoItem(){
+        fetch(`http://localhost:8080/api/todoItems/${todoItem.id}`, {
+            method: 'DELETE',
+            headers: {
+                'content-type': 'application/json'
+            },
+        })
+        .then(response => response.json())
+        .then(data => {
+            emitDeleteTodoItem(todoItem);
+        });
+    }
+
     return (
     <div align = "center">
       <>
         <input type="checkbox" checked={todoItem.isDone}
         onChange={updateIsDone} /> 
-        <input type="text" value={todoItem.task} onChange={updateTask} />
-        <br></br>
+        {
+            todoItem.isDone ? <span style={{textDecoration:'line-through'}}>{todoItem.task}</span> : <input type="text" value={todoItem.task} onChange={updateTask} />
+        }
+        <span style={{marginLeft: "1rem", cursor: "pointer"}} onClick={deleteToDoItem}>🗑️</span>
       </>
     </div>
     );
