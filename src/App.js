@@ -13,7 +13,7 @@ function App() {
     if (!todoItems) {
       fetch('http://localhost:8080/api/todoItems').then((response) => response.json()
       ).then(data => {
-        console.log("Todo items list: ", data);
+        console.log("Todo 2 items list: ", data);
         setTodoItems(data);
       });
     }
@@ -34,6 +34,11 @@ function App() {
     });
   }
 
+  function handleDeleteToDoItem(item) {
+    const updatedTodoItems = todoItems.filter(aToDoItem => aToDoItem.id !== item.id)
+    setTodoItems([...updatedTodoItems]);
+  }
+
   return (
     <>
 
@@ -41,7 +46,7 @@ function App() {
 
       <div>
         {todoItems ? todoItems.map((todoItem) => {
-          return <TodoItem key={todoItem.id} data={todoItem} />
+          return <TodoItem key={todoItem.id} data={todoItem} emitDeleteTodoItem={handleDeleteToDoItem}/>
         }) : 'loading data...'}
       </div>
 
