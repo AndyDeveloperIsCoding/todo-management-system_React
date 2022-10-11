@@ -13,7 +13,7 @@ function App() {
     if (!todoItems) {
       fetch('http://localhost:8080/api/todoItems').then((response) => response.json()
       ).then(data => {
-        console.log("Todo 2 items list: ", data);
+        console.log("Todo items list: ", data);
         setTodoItems(data);
       });
     }
