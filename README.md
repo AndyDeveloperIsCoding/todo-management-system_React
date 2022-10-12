@@ -1,3 +1,9 @@
+Dear reader
+
+This application uses PostgreSQL as database. For the application to work properly, please configure the database. For this You have two options:
+
+
+# General description 
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
